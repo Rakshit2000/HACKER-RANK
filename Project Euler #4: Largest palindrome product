@@ -1,0 +1,21 @@
+import sys
+
+def Palin(n):
+    return str(n) == str(n)[::-1]
+
+palindromes = []
+for i in range(100, 1000):
+    for j in range(100, 1000):
+        product = i * j
+        if Palin(product):
+            palindromes.append(product)
+palindromes.sort(reverse = True)
+
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    for i in palindromes:
+        if i < n:
+            print(i)
+            break
+    
