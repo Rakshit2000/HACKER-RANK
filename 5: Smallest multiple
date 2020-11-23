@@ -1,0 +1,14 @@
+import sys
+from functools import reduce
+
+def gcd(a,b):
+    while b!=0:
+        a,b = b,a%b
+    return a    
+    
+    
+t = int(input().strip())
+for a0 in range(t):
+    n = int(input().strip())
+    print(reduce(lambda a,b: a*b//gcd(a,b),range(1,n+1)))
+    
