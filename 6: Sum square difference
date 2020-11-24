@@ -1,0 +1,12 @@
+#!/bin/python3
+
+import sys
+
+def sq(n):
+    return (n*(n+1)*(2*n+1))//6
+def sum_sq(n):
+    return (n*(n+1))//2
+t = int(input().strip())
+for a0 in range(t):
+    n = int(input().strip())
+    print(abs(pow(sum_sq(n),2)-sq(n)))
