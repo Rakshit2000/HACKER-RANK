@@ -1,0 +1,18 @@
+import sys
+from operator import mul
+from functools import reduce
+
+
+t = int(input().strip())
+for a0 in range(t):
+    n,k = input().strip().split(' ')
+    n,k = [int(n),int(k)]
+    num = input().strip()
+    list=[int(x) for x in str(num)]
+    product=[]
+    for i in range(0,n-k):
+        product.append(reduce(mul,list[i:i+k]))
+       
+    print(max(product))
+    
+    
