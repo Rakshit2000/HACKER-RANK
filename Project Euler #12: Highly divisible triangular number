@@ -1,0 +1,56 @@
+# Function to find all factors of an integer
+# Time complexity = O(sqrt(n))
+def All_Factors(n):
+  factors = []
+
+  for div in range(1, int(n**0.5) + 1):
+    if n % div == 0:
+      factors.append(div)
+
+      other = n // div
+      if other != div:
+        factors.append(other)
+
+  return factors
+
+# Main function
+# Time complexity = O(n^1.5))
+def Divisible_Triangular_Number(n): 
+  i = 1
+  
+  while True:
+    # Triangle number is the sum of consecutive numbers
+    sum = i*(i+1)//2
+    
+    '''
+    _____Previous version: O(sum^0.5) = O(i)_____
+    
+    factors_number = len(All_Factors(sum))
+    
+    _____Optimized version: O(i^0.5)_____
+    
+    if i%2 == 0:
+      factors_number = len(All_Factors(i//2))*len(All_Factors(i+1))
+    else:
+      factors_number = len(All_Factors(i))*len(All_Factors((i+1)//2))
+      
+    _____Why?_____
+    
+    We break "sum" into 2 parts to reduce time complexity:
+    NumberOfDivisors(a.b) = NumberOfDivisors(a).NumberOfDivisors(b)
+    '''
+    
+    if i%2 == 0:
+      factors_number = len(All_Factors(i//2))*len(All_Factors(i+1))
+    else:
+      factors_number = len(All_Factors(i))*len(All_Factors((i+1)//2))
+      
+    if factors_number > n:
+      return sum
+    else:
+      i += 1
+
+if __name__ == '__main__':
+  for _ in range(int(input())):
+    n = int(input())
+    print(Divisible_Triangular_Number(n))
