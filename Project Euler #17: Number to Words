@@ -1,20 +1,68 @@
-digits = ['','One ','Two ','Three ','Four ','Five ','Six ','Seven ','Eight ','Nine ','Ten ','Eleven ','Twelve ','Thirteen ','Fourteen ','Fifteen ','Sixteen ','Seventeen ','Eighteen ','Nineteen ']
-two_d=['','','Twenty ','Thirty ','Forty ','Fifty ','Sixty ','Seventy ','Eighty ','Ninety ']
-powers = ['','Thousand ','Million ','Billion ','Trillion ']
-def tens(n):
-    if n==0: return ''
-    if n<20: return digits[n]
-    return two_d[n//10]+digits[n%10]
-def hundered(n):
-    if n == 0: return ''
-    if n < 100: return tens(n%100)
-    return digits[n//100]+'Hundred '+tens(n%100)
-def word(n):
-    if n==0: return 'Zero'
-    c, wrd = 0, ''
-    while n>0:
-        h = n%1000
-        if h!=0: wrd = hundered(h) + powers[c] + wrd
-        n, c = n//1000, c+1
-    return wrd
-for c in range(int(input())): print(word(int(input())).rstrip())
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+t = int(input().strip())
+
+words = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve",
+         "Thirteen", "Fourteen", "Fifteen","Sixteen", "Seventeen","Eighteen", "Nineteen", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty",
+         "Ninety"]
+
+
+def inWords(n):
+    output = ""
+
+    if n == 0:
+        return (words[0])
+
+    while (n > 0):
+
+        if n < 20:
+            output += words[(n)]
+            n -= n
+        elif n < 100:
+            a = n // 10
+
+            output += words[a + 18]
+            n = n % 10
+        elif n < 1000:
+            a = n // 100
+
+            output += words[a] + " Hundred"
+
+            n = n % 100
+
+        elif n < 1000000:
+            a = n // 1000
+
+            output += inWords(a) + " Thousand"
+
+            n = n % 1000
+
+        elif n < 1000000000:
+            a = n // 1000000
+
+            output += inWords(a) + " Million"
+
+            n = n % 1000000
+
+        elif n < 1000000000000:
+            a = n // 1000000000
+
+            output += inWords(a) + " Billion"
+
+            n = n % 1000000000
+
+        else:
+            a = n // 1000000000000
+
+            output += inWords(a) + " Trillion"
+
+            n = n % 1000000000000
+
+        if n > 0:
+            output += " "
+
+    return (output)
+
+
+for a0 in range(t):
+    n = int(input().strip())
+    print(inWords(n))
