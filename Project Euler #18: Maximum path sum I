@@ -1,0 +1,10 @@
+def max_sum(mat, i = 0, j = 0): # i = 0, j = 0
+    if i == len(mat) - 1:
+        return mat[i][j]
+    return max(max_sum(mat, i+1, j+1), max_sum(mat, i+1, j)) + mat[i][j]
+
+t = int(input())
+for i in range(t):
+    n = int(input())
+    mat = [list(map(int, input().split())) for i in range(n)]
+    print(max_sum(mat))
