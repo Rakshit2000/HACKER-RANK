@@ -1,0 +1,12 @@
+import math
+def sum_of_factorials(n):
+    
+    fact = math.factorial(n)
+    str1 = str(fact)
+    lis1 = list(map(int, str1.strip()))
+    return sum(lis1)
+
+t = int(input())
+for i in range(t):
+    n = int(input())
+    print(sum_of_factorials(n))
